@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+{{ super() }}
+<div class="form_container">
+<h1>Вход в аккаунт</h1>
+<div class="input">
+{% for cat, msg in get_flashed_messages(True) %}
+<div class="flash {{cat}}">{{msg}}</div>
+{% endfor %}
+<form action="" method="post" class="form-contact">
+{{ form.hidden_tag() }}
+
+{% for field in form if field.name not in ["csrf_token", "remember", "submit"] -%}
+    <p> {{ field.label(class="label") }} 
+    {% if field.errors %}
+        {{ field(class = "invalid") }}
+    <span class="invalid-feedback">
+        {% for e in field.errors %}
+        {{ e }}
+        {% endfor %}
+    </span>
+    {% else %}
+        {{ field(class = "field") }}
+    {% endif %}
+{% endfor %}
+</div>
+<div class="form-bottom">
+<span class="remember">{{ form.remember.label() }} {{ form.remember() }} </span>
+<span class="register"> <a href="{{url_for('register')}}">Регистрация</a></span></div>
+<button> {{ form.submit() }} </button>
+</form>
+</div>
+
+{% endblock %}
