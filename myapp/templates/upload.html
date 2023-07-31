@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for cat, msg in get_flashed_messages(True) %}
+<div class="flash {{cat}}">{{msg}}</div>
+{% endfor %}
+
+<h2>Select file(s) to upload</h2>
+
+<form method="post" action="" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    {{ form.file(multiple = True) }}
+    {{ form.submit() }}
+    
+</form>
+
+<p>Допустимые форматы: .png, .jpg, .jpeg</p>
+<p>Файлы других форматов не будут загружены</p>
+<p>Максимальный размер файла - 16 Мб</p>
+{% endblock %}

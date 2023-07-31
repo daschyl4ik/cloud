@@ -2,17 +2,18 @@ from flask import Flask, render_template, url_for, request, flash, session, redi
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
-from forms import LoginForm, RegisterForm
+from forms import LoginForm, RegisterForm, UploadFileForm
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user, UserMixin
 import os
 #for uploading pictures
 from werkzeug.utils import secure_filename
+#to return the uploaded image
+from flask import send_from_directory
 
 
-# app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 DEBUG = True
-UPLOAD_FOLDER = '/static/images/temp/'
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', }
+UPLOAD_FOLDER = './static/images/temp'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 SECRET_KEY = os.urandom(20).hex()
 
 app = Flask(__name__)
@@ -20,6 +21,7 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = SECRET_KEY #"u863f45fac06ee7fdbe526410a398f3e82dd77184"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cloud.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 #max file size is 16MB
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 db = SQLAlchemy(app)
@@ -27,7 +29,7 @@ db = SQLAlchemy(app)
 
 login_manager = LoginManager(app)
 login_manager.login_view = "login"
-login_manager.login_message = "Войдите в аккаунт, чтобы просмотривать содержимое страницы"
+login_manager.login_message = "Войдите в аккаунт, чтобы просматривать содержимое страницы"
 login_manager.login_message_category = "success"
 
 @login_manager.user_loader
@@ -52,8 +54,8 @@ class Photos(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     date = db.Column(db.DateTime, default=datetime.utcnow)
-    image = db.Column(db.LargeBinary)
-
+    thumbnail = db.Column(db.LargeBinary)
+    minio_url = db.Column(db.String)
 
 #create db
 with app.app_context():
@@ -69,8 +71,8 @@ def index():
 
 @app.route("/login", methods =["POST", "GET"])
 def login():
-    # if current_user.is_authenticated:
-    #     return redirect(url_for("photos"))
+    if current_user.is_authenticated:
+        return redirect(url_for("photos"))
     
     form = LoginForm()
     #если данные введены корректно(валидаторы) и отправлены по пост запросу
@@ -128,35 +130,46 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route('/upload_file', methods=['GET', 'POST'])
-def upload_file():
-    if request.method == 'POST':
-        # check if the post request has the file part
-        if 'file' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-        file = request.files['file']
-        # if user does not select file, browser also
-        # submit an empty part without filename
-        if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('uploaded_file',
-                                    filename=filename))
-    return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-      <input type=file name=file>
-      <input type=submit value=Upload>
-    </form>
-    '''
+
+@app.route("/upload", methods=["POST", "GET"])
+def upload():
+    form = UploadFileForm()
+    if form.validate_on_submit():
+        files = request.files.getlist("file")  # Get the list of files
+        for file in files:
+               
+            if not allowed_file(file.filename):
+                print(f"Skipping {file.filename} (not allowed extension)")
+                continue  # Skip to the next iteration without processing the invalid file
+        
+            try:
+                file.save(os.path.join(
+                    app.config["UPLOAD_FOLDER"], 
+                    secure_filename(file.filename)
+                    ))
+
+            except:
+                flash ("Что-то пошло не так...", "error")
+                return redirect(url_for("upload"))
+                    
+        flash ("Файлы загружены", "success")
+        return redirect(url_for("upload"))
+    return render_template("upload.html", form = form)
 
 
+@app.errorhandler(413)
+def request_entity_too_large(error):
+    flash ("Файл не должен превышать 16 Мб", "error")
+    return redirect(url_for("upload"))
+    
+
+
+
+#errors:
+#413 - too large
+#7z file keeps on spinning. uploading? should not
+#files with the same names are changed. check if the filename exists!
+#if several files none will be uploaded
 
 if __name__ == "__main__":
     app.run(debug=True)
