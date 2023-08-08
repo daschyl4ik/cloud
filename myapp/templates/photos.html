@@ -3,4 +3,13 @@
 {% block content %}
 <span class="hello">Hello, {{name}}!</span>
 <span class="logout"><a href="{{url_for('logout') }}">Выйти</span>
+<span class="upload"><a href="{{url_for('upload') }}">фотки</span>
 {% endblock %}
+
+
+
+
+<!-- images = get.images with current_user.id
+for image in images:
+get url
+display image src:url -->
