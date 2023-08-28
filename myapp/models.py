@@ -15,4 +15,5 @@ class Photos(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     name = db.Column(db.String, nullable = False)
-    date = db.Column(db.DateTime, default=datetime.utcnow)
+    thumbnail_name = db.Column(db.String, nullable = True)
+    image_date = db.Column(db.DateTime)

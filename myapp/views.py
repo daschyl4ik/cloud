@@ -5,6 +5,7 @@ import funcs
 from flask_login import login_required
 
 
+#TO BE REMOVED UPON TESTING
 @app.route("/hello",  methods =["GET"])
 def hello():
     return render_template("hello.html")
@@ -32,7 +33,7 @@ def register():
     return funcs.register()
 
 
-@app.route("/photos")
+@app.route("/photos",  methods = ["GET"])
 @login_required
 def photos():
     return funcs.photos()

@@ -232,24 +232,25 @@ def create_thumbnail(filename, image_thumbnail_name):
 def get_datetime(filename):
     im = Image.open(UPLOAD_FOLDER + '/' + filename)
     exif = im._getexif()
+    date_time_format = '%Y:%m:%d %H:%M:%S'
     try:
         datetimeoriginal = exif.get(36867) #когда изображение было создано
         #конвертируем из строки в datetime object
-        datetime_original = datetime.strptime(datetimeoriginal, '%Y:%m:%d %H:%M:%S')
+        datetime_original = datetime.strptime(datetimeoriginal, date_time_format)
         return datetime_original
     except:
         pass
 
     try:
         datetimedigitized = exif.get(36868) #когда изображение было отсканировано
-        datetime_digitized =  datetime.strptime(datetimedigitized, '%Y:%m:%d %H:%M:%S')
+        datetime_digitized =  datetime.strptime(datetimedigitized, date_time_format)
         return datetime_digitized
     except:
         pass
 
     try:
         datetimefilechanged = exif.get(306) #дата изменения изображения
-        datetime_filechanged =  datetime.strptime(datetimefilechanged, '%Y:%m:%d %H:%M:%S')
+        datetime_filechanged =  datetime.strptime(datetimefilechanged, date_time_format)
         return datetime_filechanged
     except:
         pass
@@ -387,6 +388,17 @@ def get_image_url(image_name):
         pass
 
 
+def update_image_name(image, new_image_name, new_image_thumbnail_name):
+    try:
+        image.name = new_image_name
+        image.thumbnail_name = new_image_thumbnail_name
+        db.session.commit()
+        print("Image name updated")
+    except:
+        print("image name was not updated")
+        pass
+
+
 
 
 @app.route("/upload", methods=["POST", "GET"])
@@ -424,16 +436,17 @@ def upload():
                 image_name = f'{str(current_user.id)}_{str(image_id)}_{secure_filename(latin_filename)}'
                 #update the name in db
                 image_thumbnail_name = f'{str(current_user.id)}_{str(image_id)}_thumbnail_{secure_filename(latin_filename)}'
-                try:
-                    image.name = image_name
-                    image.thumbnail_name = image_thumbnail_name
-                    db.session.commit()
-                    print("Image name updated")
-                except:
-                    print("image name was not updated")
-                    pass
+                update_image_name(image, image_name, image_thumbnail_name)
+                # try:
+                #     image.name = image_name
+                #     image.thumbnail_name = image_thumbnail_name
+                #     db.session.commit()
+                #     print("Image name updated")
+                # except:
+                #     print("image name was not updated")
+                #     pass
                 image_compress(latin_filename, image_name)
-                crop_image(latin_filename)
+                #crop_image(latin_filename)
                 create_thumbnail(latin_filename, image_thumbnail_name)
                 datetime = get_datetime(latin_filename)                   
                 print("date written is " + str(datetime))
