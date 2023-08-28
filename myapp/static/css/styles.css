@@ -8,6 +8,15 @@
     background: transparent;
 }
 
+header {
+	background-image: url("../images/top.png");
+    height: 30vh;
+    margin: -2%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+
+}
+
 
 body {
     font-family: 'Alice', serif;
@@ -15,24 +24,63 @@ body {
     padding: 0%; 
     background-image: url("../images/bg.png");
     background-size: auto;
-    box-sizing: border-box;
     background-repeat: no-repeat;
-    overflow: hidden;
-}
-
-
-header {
-	background-image: url("../images/top_cloud.png");
-    height: 220px;
-    margin: -2%;
-    background-size: 100%;
-    background-repeat: no-repeat;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 h1 {
-    font-size: xx-large;
+    font-size: 2.5vw;
     margin-bottom: -20px;
 }
+
+button {
+    margin-left: 1.3vw;
+    width: 21.3vw;
+    line-height: 2.5;
+    font-size: 1.1vw;
+    text-align: center;
+    border-radius: 0.5vh;
+    background-color: #c1b3e3;
+    font-family: 'Lunasima', sans-serif;
+}
+
+button:hover, button:focus {
+    background-color: #aea1cc;
+}
+
+button:active {
+    box-shadow: inset 2px -2px 3px rgba(255, 255, 255, 0.6) inset 2px 2px 3px #615a72;
+}
+
+p {
+    padding-top: 2%;
+}
+
+a {
+  color: #292941;
+  text-decoration: none
+}
+
+a:hover, a:focus, .remember:hover,.remember:focus, #logout a:hover,  #logout a:focus {
+    text-shadow: 0px 0px 1px #292941;
+}
+
+.profile {
+    z-index: 1;
+    position: absolute;
+    top: 5vh;
+    left: 75vw;
+    color: white;
+    text-shadow: 2px 2px 4px #292941;
+    font-size: 1.5vw;
+}
+
+#logout a{
+    color: white;
+    padding-left: 5vw;
+}
+
 
 .form_container {
     font-family: 'Lunasima', sans-serif;
@@ -41,119 +89,219 @@ h1 {
     align-items: center;
     min-height: 100vh;
     flex-direction: column;
-    gap: 30px;
+    gap: 3vh;
     position: relative;
-    top: -90px;
+    top: -15vh;
     color: #292941;
+    
 }
 
 .input {
     position: relative;
-    width: 300px;
+    width: 20vw;
 }
 
 
 .input .label {
-    left: 0;
-    padding: 10px;
+    padding: 1vw;
     pointer-events: none;
-    font-size: 1em;
+    font-size: 1vw;
 }
 
 .input .field {
     width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    border: 1px solid none;
-    border-radius: 5px;
-    outline: none;
+    padding: 1.5vh;
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
+    border-radius: 0.5vh;
     color: #292941;
-    font-size: 1em;
+    font-size: 1vw;
     background-color: #dad1ee;
 
 }
 
 .form-contact {
-    margin-top: 10%;
+    margin-top: 4vh;
 }
 
 .form-contact .invalid {
     width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    border: 1px solid none;
-    border-radius: 5px;
-    outline: none;
+    padding: 1.5vh;
+    margin-top: 0.5vh;
+    margin-bottom: 0.5vh;
+    border-radius: 0.5vh;
     color: #292941;
-    font-size: 1em;
+    font-size: 1vw;
     background-color: #f3aabc;
 }
 
 .form-contact .invalid-feedback {
     position: relative;
     color: #692235;
-    text-align: right;
-    font-size: smaller;
+    font-size: 1vw;
+    padding: 1vw;
+    font-style: italic;
 }
 
 .form-bottom {
     align-items: center;
     flex-direction: row;
-    margin-left: 20px;
+    margin-left: 2vw;
+    font-size: 1vw;
 }
 
 .register {
-    margin-left: 100px;
+    margin-left: 7vw;
 }
 
-.flash {padding: 10px;}
 
 .flash.success {
     width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    border: 1px solid none;
-    border-radius: 5px;
-    outline: none;
+    padding: 1.5vh;
+    margin-top: 1vh;
+    margin-bottom: 0.5vh;
+    border-radius: 0.5vh;
     color: #292941;
-    font-size: 1em;
+    font-size: 1vw;
     background-color: #74e5d2;
     text-align: center;
 }
+
 .flash.error {
     width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    border: 1px solid none;
-    border-radius: 5px;
-    outline: none;
+    padding: 1.5vh;
+    margin-top: 1vh;
+    margin-bottom: 0.5vh;
+    border-radius: 0.5vh;
     color: #292941;
-    font-size: 1em;
+    font-size: 1vw;
     background-color: #f3aabc;
     text-align: center;
 }
 
-
-button {
-    margin-left: 25px;
-    width: 320px;
-    border: 0;
-    line-height: 2.5;
-    font-size: 1rem;
-    text-align: center;
-    text-shadow: 1px 1px 1px #000;
-    border-radius: 5px;
-    background-color: #c1b3e3;
+#upload_result {
+    width: 21.3vw;
+    margin-left: 38.7vw;
 }
 
-button:hover {
-    background-color: #aea1cc;
+.gallery {
+    width: 90vw;
+    margin: 0 auto; /* центрируем контейнер */
+    padding-top: 3vh;
 }
 
-button:active {
-    box-shadow: inset 2px -2px 3px rgba(255, 255, 255, 0.6), inset 2px 2px 3px #615a72;
+.photo {
+    float: left; /* выстраиваем слева направо */
+    width: 7vw;
+    padding: 0.5vw;
+}
+
+.photo img {
+    display: block;
+    max-width: 100%;
+    border-radius: 0.5vh;
+    box-shadow: 3px 3px 5px #292941;
+}
+
+.photo a:hover {
+    opacity: 0.5;
+}
+
+.photo a {
+    display: block;
+}
+
+.upload {
+    width: 20vw;
+    margin-left: 40vw;
+}
+
+.cat_icon {
+    width: 12vw;
+    margin-left: 44vw;
+    opacity: 0.5;
+}
+
+.form_upload {
+    font-family: 'Lunasima', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+    gap: 7vh;
+    position: relative;
+    margin-top: -15%;
+    color: #292941;
+}
+
+
+.choose_files {
+    border: solid 2px #c1b3e3;;
+    border-radius: 0.5vw;
+    background-color: white;
+    padding-left: 3vw;    
+}
+
+.warning {
+text-align: center;
+padding-top: 3%;
+font-size: 1vw;
+}
+
+  /* Styles for the modal and overlay */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+  
+.modal-content {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); /* размещаем по центру */
+    background-color: white;
+    border-radius: 0.5vw;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    max-height: 95vh;
+    font-size: 1.2vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+  
+
+
+.modal-content img {
+    max-height: 90vh;
+    border-top-left-radius: 0.5vw;
+    border-top-right-radius: 0.5vw;}
+
+.modal-overlay:target {
+    display: flex;
+}
+
+.close-modal {
+    display: inline-flex;
+    padding: 1vw;
+}
+
+.download {
+    display: inline-flex;
+    padding: 1vw;
+}
+
+.upload_result {
+    width: 20vw;
+    height: 2vw;
+    margin-bottom: 10vh;
+    margin-left: 40VW;
+    z-index: 1;
 }

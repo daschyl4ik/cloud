@@ -15,7 +15,7 @@ MAX_CONTENT_LENGTH = 16 * 1024 * 1024
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 UPLOAD_FOLDER = './static/images/temp/'
 COMPRESSED_IMAGE_FOLDER = './static/images/compressed/'
-THUMBNAILS_PATH = './static/images/thumbnails/'
+THUMBNAILS_FOLDER = './static/images/thumbnails/'
 
 
 LOGIN_MESSAGE = "Войдите в аккаунт, чтобы просматривать содержимое страницы"

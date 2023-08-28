@@ -4,7 +4,7 @@ from forms import LoginForm, RegisterForm, UploadFileForm
 from models import Users, Photos
 from werkzeug.security import generate_password_hash, check_password_hash
 from cloud import db
-from config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER, COMPRESSED_IMAGE_FOLDER, THUMBNAILS_PATH
+from config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER, COMPRESSED_IMAGE_FOLDER, THUMBNAILS_FOLDER
 from PIL import Image
 import os
 from datetime import datetime
@@ -53,9 +53,9 @@ def register():
             db.session.commit()
             flash("Вы успешно зарегистрированы", "success")
             return redirect(url_for("login"))
-        except:
+        except Exception as e:
             db.session.rollback()
-            print("Ошибка добавления в БД")
+            print("Ошибка добавления в БД", str(e))
 
     return render_template("register.html", title = "Регистрация", form = form)
 
@@ -75,26 +75,49 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
+def update_image_name(filename, db_image_name, new_image_name):
+    try:
+        db_image_name = new_image_name
+        db.session.commit()
+        print("Image name updated")
+    except Exception as e:
+        print("image name was not updated", str(e))
+        pass
+
+
 def image_compress(filename, image_name):
     try:
         im = Image.open(UPLOAD_FOLDER + '/' + filename)
         compessed_image_path = os.path.join(COMPRESSED_IMAGE_FOLDER + image_name)
         im.save(compessed_image_path, optimize=True, quality=50, lossless = True)
         print("files compressed")
-    except:
-        print("compression failed")
+    except Exception as e:
+        print("compression failed", str(e))
         pass
 
 
 def create_thumbnail(filename, image_thumbnail_name):
     try:
         size = (256, 256)
-        im = Image.open(UPLOAD_FOLDER + '/' + filename)
-        im.thumbnail(size)
-        im.save(os.path.join(THUMBNAILS_PATH + image_thumbnail_name))
-        print('thumbnail created')
-    except:
-        print("thumbnail creation failed")
+        im = Image.open(os.path.join(UPLOAD_FOLDER, filename))
+        image_width, image_height = im.size
+        #crop the image to get square image for the thumbnail
+        if image_height > image_width:
+            total_crop_value = image_height - image_width
+            crop_value = total_crop_value / 2
+            cropped_image = im.crop((0, crop_value, image_width, image_height - crop_value))
+        elif image_width > image_height:
+            total_crop_value = image_width - image_height
+            crop_value = total_crop_value / 2
+            cropped_image = im.crop((crop_value, 0, image_width - crop_value, image_height))
+        else:
+            cropped_image = im
+        
+        cropped_image.thumbnail(size)
+        cropped_image.save(os.path.join(THUMBNAILS_PATH, image_thumbnail_name))
+        print('Thumbnail created')
+    except Exception as e:
+        print("Thumbnail creation failed:", str(e))
         pass
 
 
@@ -135,8 +158,8 @@ def get_image_url(image_name):
         url = client.presigned_get_object(bucket_name,image_name)
         # print(image_url)
         return url
-    except:
-        print("Get image URL: failed")
+    except Exception as e:
+        print("Didn't image URL: ", str(e))
         pass
 
 
@@ -151,32 +174,38 @@ def upload():
                 continue  # Skip to the next iteration without processing the invalid file
         
             try:
+                #save to uploads folder
                 uploaded_filename = os.path.join(
                     app.config["UPLOAD_FOLDER"], 
                     secure_filename(file.filename))
                 file.save(uploaded_filename)
                 u_id = current_user.id
+                #image_datetime = get_datetime(file.filename) , date = image_datetime
                 image = Photos(user_id = u_id, name = file.filename)
                 db.session.add(image)
                 db.session.flush()
                 db.session.commit()
                 print("Файлы добавлены в базу данных")
                 image_id = image.id
+                #for debug, to be deleted
                 print(image_id)
                 image_name = f'{str(current_user.id)}_{str(image_id)}_{secure_filename(file.filename)}'
                 #update the name in db
-                try:
-                    image.name = image_name
-                    db.session.commit()
-                    print("Image name updated")
-                except:
-                    print("image name was not updated")
-                    pass
+                update_image_name(file.filename, image.name, image_name)
+                # try:
+                #     image.name = image_name
+                #     db.session.commit()
+                #     print("Image name updated")
+                # except:
+                #     print("image name was not updated")
+                #     pass
+                #compress image
                 image_compress(file.filename, image_name)
-                image_thumbnail_name = f'{str(current_user.id)}_{str(image_id)}_thumbnail_{secure_filename(file.filename)}'
-                create_thumbnail(file.filename, image_thumbnail_name)
-                datetime = get_datetime(file.filename)
-                print("date written is " + str(datetime))
+                #create thumbnail
+                thumbnail_image_name = f'{str(current_user.id)}_{str(image_id)}_thumbnail_{secure_filename(file.filename)}'
+                create_thumbnail(file.filename, thumbnail_image_name)
+                # datetime = get_datetime(file.filename)
+                # print("date written is " + str(datetime))
                 #удаляем загруженный ранее файл, он больше не нужен
                 os.remove(uploaded_filename)
                 #test
@@ -184,17 +213,23 @@ def upload():
                 minio_upload_image(image_name, compessed_image_path)
                 image_url = get_image_url(image_name)
                 print(image_url)
-                thumbnail_image_path = os.path.join(THUMBNAILS_PATH + image_thumbnail_name)
-                minio_upload_image(image_thumbnail_name, thumbnail_image_path)
-                thumbnail_image_url = get_image_url(image_thumbnail_name)
+                thumbnail_image_path = os.path.join(THUMBNAILS_FOLDER + thumbnail_image_name)
+                minio_upload_image(thumbnail_image_name, thumbnail_image_path)
+                thumbnail_image_url = get_image_url(thumbnail_image_name)
                 print(thumbnail_image_url)
 
-            except:
+            except Exception as e:
                 flash ("Что-то пошло не так...", "error")
+                print ("File not uploaded: ", str(e))
                 return redirect(url_for("upload"))
-                    
+        photos = Photos.query.filter_by(user_id=current_user.id).all()
+        print(photos)            
         flash ("Файлы загружены", "success")
         return f'<img src="{image_url}" alt="image"><img src="{thumbnail_image_url}" alt="thumbnail_image">'
         #return redirect(url_for("upload"))
+
     return render_template("upload.html", form = form)
 
+
+# photos = Photos.query.filter_by(user_id=current_user.id).all()
+# print(photos)

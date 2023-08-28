@@ -45,12 +45,8 @@ def logout():
 
 
 @app.route("/upload", methods=["POST", "GET"])
+@login_required
 def upload():
     return funcs.upload()
 
-
-# #Have to test it and add more error handlers like 404
-# @app.errorhandler(413)
-# def request_entity_too_large(error):
-#     return funcs.request_entity_too_large(error)
 

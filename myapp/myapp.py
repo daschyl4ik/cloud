@@ -75,7 +75,9 @@ class Photos(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     name = db.Column(db.String, nullable = False)
-    date = db.Column(db.DateTime, default=datetime.utcnow)
+    thumbnail_name = db.Column(db.String, nullable = True)
+    image_date = db.Column(db.DateTime)
+
 
 #create db
 with app.app_context():
@@ -133,10 +135,22 @@ def register():
     return render_template("register.html", title = "Регистрация", form = form)
 
 
-@app.route("/photos")
+@app.route("/photos", methods = ["GET"])
 @login_required
 def photos():
-    return render_template("photos.html", title="Фото", name = current_user.name)
+    user_photos = (
+        Photos.query.filter_by(user_id=current_user.id)
+        .order_by(Photos.image_date.desc())
+        .all()
+    )
+
+    thumbnail_images_urls = [get_image_url(photo.thumbnail_name) for photo in user_photos]
+    images_urls = [get_image_url(photo.name) for photo in user_photos]
+    images_thumbnails_urls = zip(images_urls, thumbnail_images_urls)
+
+    return render_template("photos.html", title="Фото", name = current_user.name, images_thumbnails_urls=images_thumbnails_urls)
+
+
 
 
 @app.route("/logout")
@@ -154,63 +168,176 @@ def allowed_file(filename):
 
 
 
-# def image_compress(filename, image_id):
-#     try:
-#         im = Image.open(UPLOAD_FOLDER + '/' + filename)
-#         compessed_image_path = os.path.join(COMPRESSED_IMAGE_FOLDER + f'{str(current_user.id)}_{str(image_id)}_compressed_{secure_filename(filename)}')
-#         im.save(compessed_image_path, optimize=True, quality=50, lossless = True)
-#         print("files compressed")
-#     except:
-#         print("compression failed")
-#         pass
-
 
 def image_compress(filename, image_name):
     try:
-        im = Image.open(UPLOAD_FOLDER + '/' + filename)
+        im = Image.open(os.path.join(UPLOAD_FOLDER, filename))
         compessed_image_path = os.path.join(COMPRESSED_IMAGE_FOLDER + image_name)
         im.save(compessed_image_path, optimize=True, quality=50, lossless = True)
-        print("files compressed")
+        print("File compressed")
     except:
-        print("compression failed")
+        print("Compression failed")
+        pass
+
+def crop_image(filename):
+    try:
+        im = Image.open(os.path.join(UPLOAD_FOLDER, filename))
+        size = im.size
+        image_width = size[0]
+        image_height = size[1]
+        if image_height > image_width:
+            #вычисляем разницу между высотой и шириной, делим на 2
+            total_crop_value = image_height - image_width
+            crop_value = total_crop_value/2
+            cropped_image = im.crop((0,crop_value,image_width, image_height - crop_value))
+            cropped_image.save(os.path.join(THUMBNAILS_PATH + 'cropped.jpg'))
+        elif image_width > image_height:
+            #вычисляем разницу между высотой и шириной, делим на 2
+            total_crop_value = image_width - image_height
+            crop_value = total_crop_value/2
+            im.crop(crop_value,0,image_width - crop_value, image_height)
+            im.save(os.path.join(THUMBNAILS_PATH + 'cropped.jpg'))
+        else:
+            pass
+    except:
+        print('File not cropped')
         pass
 
 
 def create_thumbnail(filename, image_thumbnail_name):
     try:
         size = (256, 256)
-        im = Image.open(UPLOAD_FOLDER + '/' + filename)
-        im.thumbnail(size)
-        im.save(os.path.join(THUMBNAILS_PATH + image_thumbnail_name))
-        print('thumbnail created')
-    except:
-        print("thumbnail creation failed")
+        im = Image.open(os.path.join(UPLOAD_FOLDER, filename))
+        image_width, image_height = im.size
+        #crop the image to get square image for the
+        if image_height > image_width:
+            total_crop_value = image_height - image_width
+            crop_value = total_crop_value / 2
+            cropped_image = im.crop((0, crop_value, image_width, image_height - crop_value))
+        elif image_width > image_height:
+            total_crop_value = image_width - image_height
+            crop_value = total_crop_value / 2
+            cropped_image = im.crop((crop_value, 0, image_width - crop_value, image_height))
+        else:
+            cropped_image = im
+        
+        cropped_image.thumbnail(size)
+        cropped_image.save(os.path.join(THUMBNAILS_PATH, image_thumbnail_name))
+        print('Thumbnail created')
+    except Exception as e:
+        print("Thumbnail creation failed:", str(e))
         pass
+
 
 def get_datetime(filename):
     im = Image.open(UPLOAD_FOLDER + '/' + filename)
     exif = im._getexif()
     try:
-        datetimeoriginal = exif.get(36867)
-        return datetimeoriginal
+        datetimeoriginal = exif.get(36867) #когда изображение было создано
+        #конвертируем из строки в datetime object
+        datetime_original = datetime.strptime(datetimeoriginal, '%Y:%m:%d %H:%M:%S')
+        return datetime_original
     except:
         pass
 
     try:
-        datetimedigitized = exif.get(36868)
-        return datetimedigitized
+        datetimedigitized = exif.get(36868) #когда изображение было отсканировано
+        datetime_digitized =  datetime.strptime(datetimedigitized, '%Y:%m:%d %H:%M:%S')
+        return datetime_digitized
     except:
         pass
 
     try:
-        datetimefilechanged = exif.get(306)
-        return datetimefilechanged
+        datetimefilechanged = exif.get(306) #дата изменения изображения
+        datetime_filechanged =  datetime.strptime(datetimefilechanged, '%Y:%m:%d %H:%M:%S')
+        return datetime_filechanged
     except:
         pass
 
-    now = datetime.now()
-    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
-    return dt_string
+    datetime_now = datetime.now()
+    return datetime_now
+
+
+def cyr_to_lat(string):
+    legend = {
+        'а': 'a',
+        'б': 'b',
+        'в': 'v',
+        'г': 'g',
+        'д': 'd',
+        'е': 'e',
+        'ё': 'yo',
+        'ж': 'zh',
+        'з': 'z',
+        'и': 'i',
+        'й': 'y',
+        'к': 'k',
+        'л': 'l',
+        'м': 'm',
+        'н': 'n',
+        'о': 'o',
+        'п': 'p',
+        'р': 'r',
+        'с': 's',
+        'т': 't',
+        'у': 'u',
+        'ф': 'f',
+        'х': 'h',
+        'ц': 'ts',
+        'ч': 'ch',
+        'ш': 'sh',
+        'щ': 'shch',
+        'ъ': 'y',
+        'ы': 'y',
+        'ь': "'",
+        'э': 'e',
+        'ю': 'yu',
+        'я': 'ya',
+        'А': 'A',
+        'Б': 'B',
+        'В': 'V',
+        'Г': 'G',
+        'Д': 'D',
+        'Е': 'E',
+        'Ё': 'Yo',
+        'Ж': 'Zh',
+        'З': 'Z',
+        'И': 'I',
+        'Й': 'Y',
+        'К': 'K',
+        'Л': 'L',
+        'М': 'M',
+        'Н': 'N',
+        'О': 'O',
+        'П': 'P',
+        'Р': 'R',
+        'С': 'S',
+        'Т': 'T',
+        'У': 'U',
+        'Ф': 'F',
+        'Х': 'H',
+        'Ц': 'Ts',
+        'Ч': 'Ch',
+        'Ш': 'Sh',
+        'Щ': 'Shch',
+        'Ъ': 'Y',
+        'Ы': 'Y',
+        'Ь': "'",
+        'Э': 'E',
+        'Ю': 'Yu',
+        'Я': 'Ya',
+        '—': '-',
+    }
+    new_string = ""
+    for s in string:
+        if s in legend:
+            new_string += legend[s]
+        elif s == " ":
+            new_string += "_"
+        else:
+            new_string += s
+
+    return new_string
 
 
 #---------------------------------MINIO--------------
@@ -221,7 +348,7 @@ client = Minio (endpoint = 'play.min.io',
   secret_key = 'zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG',
   secure = True)
 
-bucket_name = 'cloudmain'
+bucket_name = 'cloudnew'
 
 #for debug only
 if client.bucket_exists(bucket_name):
@@ -271,71 +398,69 @@ def upload():
         for file in files:
                
             if not allowed_file(file.filename):
-                print(f"Skipping {file.filename} (not allowed extension)")
+                print(f"Skipping. {file.filename} (not allowed extension)")
                 continue  # Skip to the next iteration without processing the invalid file
-        
+            
+            if file.content_length > app.config['MAX_CONTENT_LENGTH']:
+                print(f"Skipping. {file.filename} exceeds the maximum allowed size of 16 MB")
+                continue
+
             try:
+                latin_filename = cyr_to_lat(file.filename)
+                print(latin_filename)
                 uploaded_filename = os.path.join(
                     app.config["UPLOAD_FOLDER"], 
-                    secure_filename(file.filename))
+                    secure_filename(latin_filename))
                 file.save(uploaded_filename)
                 u_id = current_user.id
-                image = Photos(user_id = u_id, name = file.filename)
+                image_exif_date = get_datetime(latin_filename)
+                print(image_exif_date)
+                image = Photos(user_id = u_id, name = latin_filename, image_date = image_exif_date)
                 db.session.add(image)
                 db.session.flush()
                 db.session.commit()
                 print("Файлы добавлены в базу данных")
                 image_id = image.id
-                print(image_id)
-                image_name = f'{str(current_user.id)}_{str(image_id)}_{secure_filename(file.filename)}'
+                image_name = f'{str(current_user.id)}_{str(image_id)}_{secure_filename(latin_filename)}'
                 #update the name in db
+                image_thumbnail_name = f'{str(current_user.id)}_{str(image_id)}_thumbnail_{secure_filename(latin_filename)}'
                 try:
                     image.name = image_name
+                    image.thumbnail_name = image_thumbnail_name
                     db.session.commit()
                     print("Image name updated")
                 except:
                     print("image name was not updated")
                     pass
-                image_compress(file.filename, image_name)
-                image_thumbnail_name = f'{str(current_user.id)}_{str(image_id)}_thumbnail_{secure_filename(file.filename)}'
-                create_thumbnail(file.filename, image_thumbnail_name)
-                datetime = get_datetime(file.filename)
+                image_compress(latin_filename, image_name)
+                crop_image(latin_filename)
+                create_thumbnail(latin_filename, image_thumbnail_name)
+                datetime = get_datetime(latin_filename)                   
                 print("date written is " + str(datetime))
                 #удаляем загруженный ранее файл, он больше не нужен
                 os.remove(uploaded_filename)
-                #test
+                #upload thumbnail and full size image to minio
                 compessed_image_path = os.path.join(COMPRESSED_IMAGE_FOLDER + image_name)
                 minio_upload_image(image_name, compessed_image_path)
-                image_url = get_image_url(image_name)
-                print(image_url)
                 thumbnail_image_path = os.path.join(THUMBNAILS_PATH + image_thumbnail_name)
                 minio_upload_image(image_thumbnail_name, thumbnail_image_path)
-                thumbnail_image_url = get_image_url(image_thumbnail_name)
-                print(thumbnail_image_url)
 
             except:
                 flash ("Что-то пошло не так...", "error")
-                return redirect(url_for("upload"))
-                    
+                return redirect(url_for("photos"))
+        
         flash ("Файлы загружены", "success")
-        return f'<img src="{image_url}" alt="image"><img src="{thumbnail_image_url}" alt="thumbnail_image">'
-        #return redirect(url_for("upload"))
+        return redirect(url_for("photos"))
+
     return render_template("upload.html", form = form)
 
 
 @app.errorhandler(413)
 def request_entity_too_large(error):
     flash ("Файл не должен превышать 16 Мб", "error")
-    return redirect(url_for("upload"))
+    return redirect(url_for("photos"))
     
 
-
-
-#errors:
-#413 - too large
-#7z file keeps on spinning. uploading? should not
-#files with the same names are changed. check if the filename exists!
-#if several files none will be uploaded
 
 if __name__ == "__main__":
     app.run(debug=True)

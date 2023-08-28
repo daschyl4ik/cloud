@@ -1,15 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<span class="hello">Hello, {{name}}!</span>
-<span class="logout"><a href="{{url_for('logout') }}">Выйти</span>
-<span class="upload"><a href="{{url_for('upload') }}">фотки</span>
+<div class="profile">
+    <span>Hello, {{name}}!</span>
+    <span id="logout"><a href="{{url_for('logout') }}">Выйти</a></span>
+</div>
+{% for cat, msg in get_flashed_messages(True) %}
+<div class="flash {{cat}}" id="upload_result">{{msg}}</div>
+{% endfor %}
+<form action="{{url_for('upload') }} ">
+    <button type="submit" class="upload">Добавить изображения</button>
+</form>
+<div class="gallery">
+{% for image_url, thumbnail_url in images_thumbnails_urls %}
+<div class="modal-overlay" id="modalOverlay_{{ loop.index }}">
+    <div class="modal-content">
+      <img src="{{ image_url }}" alt="Photo" class="full_size_photo">
+      <div class="modal-options">
+      <a href="#" class="close-modal">Закрыть</a>
+      <a href="{{ image_url }}" class="download">Скачать</a>
+      </div>
+    </div>
+  </div>
+<figure class="photo">
+    <a href="#modalOverlay_{{ loop.index }}"><img src="{{ thumbnail_url }}" alt="Photo" /></a>
+</figure>
+{% endfor %}
+</div>
+
 {% endblock %}
-
-
-
-
-<!-- images = get.images with current_user.id
-for image in images:
-get url
-display image src:url -->

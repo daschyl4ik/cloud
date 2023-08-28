@@ -3,14 +3,9 @@ from flask_caching import Cache
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from config import LOGIN_MESSAGE, LOGIN_MESSAGE_CATEGORY
-# CACHE_TYPE, CACHE_DEFAULT_TIMEOUT
 
 app = Flask(__name__)
 app.config.from_object('config')
-
-# app.config['CACHE_TYPE'] = CACHE_TYPE
-# app.config['CACHE_DEFAULT_TIMEOUT'] = CACHE_DEFAULT_TIMEOUT
-# cache = Cache(app)
 
 db = SQLAlchemy(app)
 

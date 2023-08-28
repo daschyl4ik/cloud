@@ -17,4 +17,4 @@ class RegisterForm(FlaskForm):
 
 class UploadFileForm(FlaskForm):
     file = FileField("File", validators=[DataRequired(message = "Выберите файл")])
-    submit = SubmitField("Upload File")
+    submit = SubmitField("Загрузить")
