@@ -1,4 +1,10 @@
-app/
 html/
 instance/
 test/
+myapp/docker.txt
+testapp/
+.terraform.lock.hcl
+.terraform
+terraform.tfstate
+terraform.tfstate.backup
+variables for main.tf

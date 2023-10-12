@@ -1,0 +1,399 @@
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): play.min.io:443
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "GET /cloudmain?location= HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "HEAD /cloudmain HTTP/1.1" 200 0
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): play.min.io:443
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "GET /cloudmain?location= HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "HEAD /cloudmain HTTP/1.1" 200 0
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 401-564-975
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:50:33] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:50:33] "[36mGET /static/images/bg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:50:34] "[36mGET /static/images/top.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:50:36] "[32mGET /photos HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:50:36] "GET /login?next=/photos HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:50:36] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:50:37] "[36mGET /static/images/top.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:50:37] "[36mGET /static/images/bg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:50:40] "[32mPOST /login?next=/photos HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:50:40] "GET /photos HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:50:40] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:50:41] "[36mGET /static/images/top.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:50:41] "[36mGET /static/images/bg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:50:43] "GET /upload HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:50:44] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:50:44] "[36mGET /static/images/cat_icon.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:50:54] "[32mPOST /upload HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:50:54] "GET /photos HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:50:54] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:51:03] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:51:03] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:51:03] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:51:06] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:51:06] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:51:21] "[32mPOST /register HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:51:21] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:51:21] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:51:54] "[32mPOST /register HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:51:54] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:51:54] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:52:03] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:52:03] "GET /photos HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:52:03] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:52:07] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:52:07] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:52:07] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): play.min.io:443
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "GET /cloudmain?location= HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "HEAD /cloudmain HTTP/1.1" 200 0
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): play.min.io:443
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "GET /cloudmain?location= HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "HEAD /cloudmain HTTP/1.1" 200 0
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 401-564-975
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:58:54] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:58:55] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:58:55] "[36mGET /static/images/top.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 04:58:55] "[36mGET /static/images/bg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:00:56] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:00:56] "GET /photos HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:00:56] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:00:56] "[36mGET /static/images/bg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:00:56] "[36mGET /static/images/top.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:01:00] "GET /upload HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:01:00] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:01:01] "[36mGET /static/images/bg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:01:01] "[36mGET /static/images/top.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:01:01] "[36mGET /static/images/cat_icon.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:01:09] "[32mPOST /upload HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:01:09] "GET /photos HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:01:10] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:01:10] "[36mGET /static/images/bg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:01:10] "[36mGET /static/images/top.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:01:11] "GET /upload HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:01:11] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:01:11] "[36mGET /static/images/cat_icon.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:01:12] "[36mGET /static/images/bg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:01:12] "[36mGET /static/images/top.png HTTP/1.1[0m" 304 -
+DEBUG:urllib3.connectionpool:Resetting dropped connection: play.min.io
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/3_11_adventure_inscription_hand_167792_1920x1080.jpg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/3_11_thumbnail_adventure_inscription_hand_167792_1920x1080.jpg HTTP/1.1" 200 0
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 32768
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 32768
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 32768
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/3_12_cat.PNG HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/3_12_thumbnail_cat.PNG HTTP/1.1" 200 0
+DEBUG:PIL.TiffImagePlugin:tag: XResolution (282) - type: rational (5) Tag Location: 22 - Data Location: 74 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: YResolution (283) - type: rational (5) Tag Location: 34 - Data Location: 82 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+DEBUG:PIL.TiffImagePlugin:tag: YCbCrPositioning (531) - type: short (3) - value: b'\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 70 - Data Location: 90 - value: b'Refluo | Dreamstime.com\x00'
+DEBUG:PIL.TiffImagePlugin:tag: XResolution (282) - type: rational (5) Tag Location: 22 - Data Location: 74 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: YResolution (283) - type: rational (5) Tag Location: 34 - Data Location: 82 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+DEBUG:PIL.TiffImagePlugin:tag: YCbCrPositioning (531) - type: short (3) - value: b'\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 70 - Data Location: 90 - value: b'Refluo | Dreamstime.com\x00'
+DEBUG:PIL.TiffImagePlugin:tag: XResolution (282) - type: rational (5) Tag Location: 22 - Data Location: 74 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: YResolution (283) - type: rational (5) Tag Location: 34 - Data Location: 82 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+DEBUG:PIL.TiffImagePlugin:tag: YCbCrPositioning (531) - type: short (3) - value: b'\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 70 - Data Location: 90 - value: b'Refluo | Dreamstime.com\x00'
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/3_13_etc.home.var.jpg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/3_13_thumbnail_etc.home.var.jpg HTTP/1.1" 200 0
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:01:40] "[32mPOST /upload HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:01:40] "GET /photos HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:01:40] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:01:41] "[36mGET /static/images/bg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:01:41] "[36mGET /static/images/top.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:02:02] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:02:02] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:02:02] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:02:05] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Sep/2023 05:02:05] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): play.min.io:443
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "GET /cloudmain?location= HTTP/1.1" 404 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain HTTP/1.1" 200 0
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): play.min.io:443
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "GET /cloudmain?location= HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "HEAD /cloudmain HTTP/1.1" 200 0
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 401-564-975
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:13:17] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:13:18] "GET /static/css/styles.css HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:13:18] "GET /static/images/bg.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:13:18] "GET /static/images/top.png HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:13:18] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:13:31] "[32mGET / HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:13:31] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:13:31] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:13:44] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:13:44] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:14:08] "[32mPOST /register HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:14:08] "GET /register HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:14:08] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:14:30] "[32mPOST /register HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:14:30] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:14:30] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:14:49] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:14:50] "GET /photos HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:14:50] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:15:02] "[32mGET /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:15:02] "GET /photos HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:15:02] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:15:08] "GET /upload HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:15:08] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:15:08] "GET /static/images/cat_icon.png HTTP/1.1" 200 -
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 22 - Data Location: 26 - value: <table: 58 bytes>
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 22 - Data Location: 26 - value: <table: 58 bytes>
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 22 - Data Location: 26 - value: <table: 58 bytes>
+DEBUG:urllib3.connectionpool:Resetting dropped connection: play.min.io
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_14_8a29a514e2586280165c57c55ab00d55.jpg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_14_thumbnail_8a29a514e2586280165c57c55ab00d55.jpg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_15_1920x1080_-_kopiya.jpg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_15_thumbnail_1920x1080_-_kopiya.jpg HTTP/1.1" 200 0
+DEBUG:PIL.TiffImagePlugin:tag: XResolution (282) - type: rational (5) Tag Location: 22 - Data Location: 74 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: YResolution (283) - type: rational (5) Tag Location: 34 - Data Location: 82 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+DEBUG:PIL.TiffImagePlugin:tag: YCbCrPositioning (531) - type: short (3) - value: b'\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 70 - Data Location: 90 - value: b'Refluo | Dreamstime.com\x00'
+DEBUG:PIL.TiffImagePlugin:tag: XResolution (282) - type: rational (5) Tag Location: 22 - Data Location: 74 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: YResolution (283) - type: rational (5) Tag Location: 34 - Data Location: 82 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+DEBUG:PIL.TiffImagePlugin:tag: YCbCrPositioning (531) - type: short (3) - value: b'\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 70 - Data Location: 90 - value: b'Refluo | Dreamstime.com\x00'
+DEBUG:PIL.TiffImagePlugin:tag: XResolution (282) - type: rational (5) Tag Location: 22 - Data Location: 74 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: YResolution (283) - type: rational (5) Tag Location: 34 - Data Location: 82 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+DEBUG:PIL.TiffImagePlugin:tag: YCbCrPositioning (531) - type: short (3) - value: b'\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 70 - Data Location: 90 - value: b'Refluo | Dreamstime.com\x00'
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_16_etc.home.var.jpg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_16_thumbnail_etc.home.var.jpg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_17_shrek.jpeg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_17_thumbnail_shrek.jpeg HTTP/1.1" 200 0
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:15:42] "[32mPOST /upload HTTP/1.1[0m" 302 -
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 22 - Data Location: 26 - value: <table: 58 bytes>
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 22 - Data Location: 26 - value: <table: 58 bytes>
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 22 - Data Location: 26 - value: <table: 58 bytes>
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_18_8a29a514e2586280165c57c55ab00d55.jpg HTTP/1.1" 200 0
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 22 - Data Location: 26 - value: <table: 58 bytes>
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 22 - Data Location: 26 - value: <table: 58 bytes>
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 22 - Data Location: 26 - value: <table: 58 bytes>
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_18_thumbnail_8a29a514e2586280165c57c55ab00d55.jpg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (2): play.min.io:443
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_19_8a29a514e2586280165c57c55ab00d55.jpg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_19_thumbnail_8a29a514e2586280165c57c55ab00d55.jpg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_20_1920x1080_-_kopiya.jpg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_20_thumbnail_1920x1080_-_kopiya.jpg HTTP/1.1" 200 0
+DEBUG:PIL.TiffImagePlugin:tag: XResolution (282) - type: rational (5) Tag Location: 22 - Data Location: 74 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: YResolution (283) - type: rational (5) Tag Location: 34 - Data Location: 82 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+DEBUG:PIL.TiffImagePlugin:tag: YCbCrPositioning (531) - type: short (3) - value: b'\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 70 - Data Location: 90 - value: b'Refluo | Dreamstime.com\x00'
+DEBUG:PIL.TiffImagePlugin:tag: XResolution (282) - type: rational (5) Tag Location: 22 - Data Location: 74 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: YResolution (283) - type: rational (5) Tag Location: 34 - Data Location: 82 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+DEBUG:PIL.TiffImagePlugin:tag: YCbCrPositioning (531) - type: short (3) - value: b'\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 70 - Data Location: 90 - value: b'Refluo | Dreamstime.com\x00'
+DEBUG:PIL.TiffImagePlugin:tag: XResolution (282) - type: rational (5) Tag Location: 22 - Data Location: 74 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: YResolution (283) - type: rational (5) Tag Location: 34 - Data Location: 82 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+DEBUG:PIL.TiffImagePlugin:tag: YCbCrPositioning (531) - type: short (3) - value: b'\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 70 - Data Location: 90 - value: b'Refluo | Dreamstime.com\x00'
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_22_etc.home.var.jpg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_21_1920x1080_-_kopiya.jpg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_22_thumbnail_etc.home.var.jpg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_21_thumbnail_1920x1080_-_kopiya.jpg HTTP/1.1" 200 0
+DEBUG:PIL.TiffImagePlugin:tag: XResolution (282) - type: rational (5) Tag Location: 22 - Data Location: 74 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: YResolution (283) - type: rational (5) Tag Location: 34 - Data Location: 82 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+DEBUG:PIL.TiffImagePlugin:tag: YCbCrPositioning (531) - type: short (3) - value: b'\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 70 - Data Location: 90 - value: b'Refluo | Dreamstime.com\x00'
+DEBUG:PIL.TiffImagePlugin:tag: XResolution (282) - type: rational (5) Tag Location: 22 - Data Location: 74 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: YResolution (283) - type: rational (5) Tag Location: 34 - Data Location: 82 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+DEBUG:PIL.TiffImagePlugin:tag: YCbCrPositioning (531) - type: short (3) - value: b'\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 70 - Data Location: 90 - value: b'Refluo | Dreamstime.com\x00'
+DEBUG:PIL.TiffImagePlugin:tag: XResolution (282) - type: rational (5) Tag Location: 22 - Data Location: 74 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: YResolution (283) - type: rational (5) Tag Location: 34 - Data Location: 82 - value: b'\x00\x00\x00H\x00\x00\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: ResolutionUnit (296) - type: short (3) - value: b'\x00\x02'
+DEBUG:PIL.TiffImagePlugin:tag: YCbCrPositioning (531) - type: short (3) - value: b'\x00\x01'
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 70 - Data Location: 90 - value: b'Refluo | Dreamstime.com\x00'
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_23_shrek.jpeg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_24_etc.home.var.jpg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_23_thumbnail_shrek.jpeg HTTP/1.1" 200 0
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:15:47] "[32mPOST /upload HTTP/1.1[0m" 302 -
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_24_thumbnail_etc.home.var.jpg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_25_shrek.jpeg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/4_25_thumbnail_shrek.jpeg HTTP/1.1" 200 0
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:15:48] "[32mPOST /upload HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:15:48] "GET /photos HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [16/Sep/2023 16:15:48] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): play.min.io:443
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "GET /cloudmain?location= HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "HEAD /cloudmain HTTP/1.1" 200 0
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): play.min.io:443
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "GET /cloudmain?location= HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "HEAD /cloudmain HTTP/1.1" 200 0
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 401-564-975
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 02:49:57] "GET /login HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 02:49:58] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 02:49:58] "[36mGET /static/images/bg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 02:49:58] "[36mGET /static/images/top.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 02:49:58] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 02:50:06] "[32mPOST /login HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 02:50:06] "GET /photos HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 02:50:06] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 02:50:06] "[36mGET /static/images/top.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 02:50:06] "[36mGET /static/images/bg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 02:50:10] "GET /upload HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 02:50:10] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 02:50:10] "[36mGET /static/images/top.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 02:50:10] "[36mGET /static/images/bg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 02:50:10] "[36mGET /static/images/cat_icon.png HTTP/1.1[0m" 304 -
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 32768
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 32768
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 32768
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/3_26_cat.PNG HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:https://play.min.io:443 "PUT /cloudmain/3_26_thumbnail_cat.PNG HTTP/1.1" 200 0
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 02:50:18] "[32mPOST /upload HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 02:50:18] "GET /photos HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 02:50:18] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 02:50:18] "[36mGET /static/images/bg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 02:50:19] "[36mGET /static/images/top.png HTTP/1.1[0m" 304 -
+INFO:werkzeug: * Detected change in 'C:\\repos\\cloud\\flask\\app\\config.py', reloading
+INFO:werkzeug: * Restarting with stat
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): 157.175.196.105:443
+DEBUG:urllib3.util.retry:Incremented Retry for (url='/cloudmain?location='): Retry(total=4, connect=None, read=None, redirect=None, status=None)
+WARNING:urllib3.connectionpool:Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000015A030C5E50>, 'Connection to 157.175.196.105 timed out. (connect timeout=300)')': /cloudmain?location=
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (2): 157.175.196.105:443
+DEBUG:urllib3.util.retry:Incremented Retry for (url='/cloudmain?location='): Retry(total=3, connect=None, read=None, redirect=None, status=None)
+WARNING:urllib3.connectionpool:Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000015A030DC5D0>, 'Connection to 157.175.196.105 timed out. (connect timeout=300)')': /cloudmain?location=
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (3): 157.175.196.105:443
+DEBUG:urllib3.util.retry:Incremented Retry for (url='/cloudmain?location='): Retry(total=2, connect=None, read=None, redirect=None, status=None)
+WARNING:urllib3.connectionpool:Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000015A030DCE10>, 'Connection to 157.175.196.105 timed out. (connect timeout=300)')': /cloudmain?location=
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (4): 157.175.196.105:443
+DEBUG:urllib3.util.retry:Incremented Retry for (url='/cloudmain?location='): Retry(total=1, connect=None, read=None, redirect=None, status=None)
+WARNING:urllib3.connectionpool:Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000015A030DD690>, 'Connection to 157.175.196.105 timed out. (connect timeout=300)')': /cloudmain?location=
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (5): 157.175.196.105:443
+DEBUG:urllib3.util.retry:Incremented Retry for (url='/cloudmain?location='): Retry(total=0, connect=None, read=None, redirect=None, status=None)
+WARNING:urllib3.connectionpool:Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x0000015A030DDF10>, 'Connection to 157.175.196.105 timed out. (connect timeout=300)')': /cloudmain?location=
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (6): 157.175.196.105:443
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): 157.175.196.105:9000
+DEBUG:urllib3.util.retry:Incremented Retry for (url='/cloudmain?location='): Retry(total=4, connect=None, read=None, redirect=None, status=None)
+WARNING:urllib3.connectionpool:Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1002)'))': /cloudmain?location=
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (2): 157.175.196.105:9000
+DEBUG:urllib3.util.retry:Incremented Retry for (url='/cloudmain?location='): Retry(total=3, connect=None, read=None, redirect=None, status=None)
+WARNING:urllib3.connectionpool:Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1002)'))': /cloudmain?location=
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (3): 157.175.196.105:9000
+DEBUG:urllib3.util.retry:Incremented Retry for (url='/cloudmain?location='): Retry(total=2, connect=None, read=None, redirect=None, status=None)
+WARNING:urllib3.connectionpool:Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1002)'))': /cloudmain?location=
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (4): 157.175.196.105:9000
+DEBUG:urllib3.util.retry:Incremented Retry for (url='/cloudmain?location='): Retry(total=1, connect=None, read=None, redirect=None, status=None)
+WARNING:urllib3.connectionpool:Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1002)'))': /cloudmain?location=
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (5): 157.175.196.105:9000
+DEBUG:urllib3.util.retry:Incremented Retry for (url='/cloudmain?location='): Retry(total=0, connect=None, read=None, redirect=None, status=None)
+WARNING:urllib3.connectionpool:Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1002)'))': /cloudmain?location=
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (6): 157.175.196.105:9000
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): 157.175.196.105:9000
+DEBUG:urllib3.util.retry:Incremented Retry for (url='/cloudmain?location='): Retry(total=4, connect=None, read=None, redirect=None, status=None)
+WARNING:urllib3.connectionpool:Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1002)'))': /cloudmain?location=
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (2): 157.175.196.105:9000
+DEBUG:urllib3.util.retry:Incremented Retry for (url='/cloudmain?location='): Retry(total=3, connect=None, read=None, redirect=None, status=None)
+WARNING:urllib3.connectionpool:Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1002)'))': /cloudmain?location=
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (3): 157.175.196.105:9000
+DEBUG:urllib3.util.retry:Incremented Retry for (url='/cloudmain?location='): Retry(total=2, connect=None, read=None, redirect=None, status=None)
+WARNING:urllib3.connectionpool:Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1002)'))': /cloudmain?location=
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (4): 157.175.196.105:9000
+DEBUG:urllib3.util.retry:Incremented Retry for (url='/cloudmain?location='): Retry(total=1, connect=None, read=None, redirect=None, status=None)
+WARNING:urllib3.connectionpool:Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1002)'))': /cloudmain?location=
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (5): 157.175.196.105:9000
+DEBUG:urllib3.util.retry:Incremented Retry for (url='/cloudmain?location='): Retry(total=0, connect=None, read=None, redirect=None, status=None)
+WARNING:urllib3.connectionpool:Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLError(1, '[SSL: WRONG_VERSION_NUMBER] wrong version number (_ssl.c:1002)'))': /cloudmain?location=
+DEBUG:urllib3.connectionpool:Starting new HTTPS connection (6): 157.175.196.105:9000
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 157.175.196.105:9000
+DEBUG:urllib3.connectionpool:http://157.175.196.105:9000 "GET /cloudmain?location= HTTP/1.1" 404 0
+DEBUG:urllib3.connectionpool:http://157.175.196.105:9000 "PUT /cloudmain HTTP/1.1" 200 0
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with stat
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (1): 157.175.196.105:9000
+DEBUG:urllib3.connectionpool:http://157.175.196.105:9000 "GET /cloudmain?location= HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:http://157.175.196.105:9000 "HEAD /cloudmain HTTP/1.1" 200 0
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 401-564-975
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 03:26:03] "[32mGET /photos HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 03:26:03] "GET /login?next=/photos HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 03:26:04] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 03:26:04] "[36mGET /static/images/bg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 03:26:04] "[36mGET /static/images/top.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 03:26:07] "[32mPOST /login?next=/photos HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 03:26:07] "GET /photos HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 03:26:07] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 03:26:07] "[36mGET /static/images/bg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 03:26:07] "[36mGET /static/images/top.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 03:26:11] "GET /upload HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 03:26:11] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 03:26:11] "[36mGET /static/images/cat_icon.png HTTP/1.1[0m" 304 -
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 22 - Data Location: 26 - value: <table: 58 bytes>
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 22 - Data Location: 26 - value: <table: 58 bytes>
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 22 - Data Location: 26 - value: <table: 58 bytes>
+DEBUG:urllib3.connectionpool:Resetting dropped connection: 157.175.196.105
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 22 - Data Location: 26 - value: <table: 58 bytes>
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 22 - Data Location: 26 - value: <table: 58 bytes>
+DEBUG:PIL.TiffImagePlugin:tag: Copyright (33432) - type: string (2) Tag Location: 22 - Data Location: 26 - value: <table: 58 bytes>
+DEBUG:urllib3.connectionpool:Starting new HTTP connection (2): 157.175.196.105:9000
+DEBUG:urllib3.connectionpool:http://157.175.196.105:9000 "PUT /cloudmain/3_27_8a29a514e2586280165c57c55ab00d55.jpg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:http://157.175.196.105:9000 "PUT /cloudmain/3_27_thumbnail_8a29a514e2586280165c57c55ab00d55.jpg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:http://157.175.196.105:9000 "PUT /cloudmain/3_29_1920x1080_-_kopiya.jpg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:http://157.175.196.105:9000 "PUT /cloudmain/3_29_thumbnail_1920x1080_-_kopiya.jpg HTTP/1.1" 200 0
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 32768
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 32768
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 32768
+DEBUG:urllib3.connectionpool:http://157.175.196.105:9000 "PUT /cloudmain/3_28_8a29a514e2586280165c57c55ab00d55.jpg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:http://157.175.196.105:9000 "PUT /cloudmain/3_30_cat.PNG HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:http://157.175.196.105:9000 "PUT /cloudmain/3_28_thumbnail_8a29a514e2586280165c57c55ab00d55.jpg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:http://157.175.196.105:9000 "PUT /cloudmain/3_30_thumbnail_cat.PNG HTTP/1.1" 200 0
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 03:26:25] "[32mPOST /upload HTTP/1.1[0m" 302 -
+DEBUG:urllib3.connectionpool:http://157.175.196.105:9000 "PUT /cloudmain/3_31_1920x1080_-_kopiya.jpg HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:http://157.175.196.105:9000 "PUT /cloudmain/3_31_thumbnail_1920x1080_-_kopiya.jpg HTTP/1.1" 200 0
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 32768
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 32768
+DEBUG:PIL.PngImagePlugin:STREAM b'IHDR' 16 13
+DEBUG:PIL.PngImagePlugin:STREAM b'IDAT' 41 32768
+DEBUG:urllib3.connectionpool:http://157.175.196.105:9000 "PUT /cloudmain/3_32_cat.PNG HTTP/1.1" 200 0
+DEBUG:urllib3.connectionpool:http://157.175.196.105:9000 "PUT /cloudmain/3_32_thumbnail_cat.PNG HTTP/1.1" 200 0
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 03:26:26] "[32mPOST /upload HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 03:26:26] "GET /photos HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 03:26:26] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 05:21:35] "GET /photos HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 05:21:35] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 05:21:35] "[36mGET /static/images/bg.png HTTP/1.1[0m" 304 -
+INFO:werkzeug:127.0.0.1 - - [25/Sep/2023 05:21:35] "[36mGET /static/images/top.png HTTP/1.1[0m" 304 -

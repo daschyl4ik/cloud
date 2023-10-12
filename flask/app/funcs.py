@@ -1,15 +1,10 @@
 from flask import render_template, url_for, redirect, flash, request
 from flask_login import login_user, current_user, logout_user
-from forms import LoginForm, RegisterForm, UploadFileForm
-from models import Users, Photos
+from . import forms, models, db, config, minio_connect, app
 from werkzeug.security import generate_password_hash, check_password_hash
-from cloud import db
-from config import ALLOWED_EXTENSIONS, UPLOAD_FOLDER, COMPRESSED_IMAGE_FOLDER, THUMBNAILS_FOLDER
 from PIL import Image
 import os
 from datetime import datetime
-from minio_connect import client, bucket_name
-from cloud import app
 from werkzeug.utils import secure_filename
 
 
@@ -23,12 +18,12 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for("photos"))
     
-    form = LoginForm()
+    form = forms.LoginForm()
     #if the data is valid upon checking by validators and sent via POST
     if form.validate_on_submit():
         try:
         #get the user's data from db
-            user = Users.query.filter_by(email=form.email.data).first()
+            user = models.Users.query.filter_by(email=form.email.data).first()
             if user and check_password_hash(user.psw, form.psw.data):
                 rm = form.remember.data
                 login_user(user, remember=rm)
@@ -40,27 +35,28 @@ def login():
                 flash ("Неверный пароль", "error")
                 return redirect(url_for("login"))
         except Exception as e:
-            flash("Ошибка БД: " + str(e), "error")
+            print("Ошибка БД: " + str(e))
             return redirect(url_for("login"))
     return render_template("login.html", title="Авторизация", form = form)
 
 
 def register():
-    form = RegisterForm()
+    form = forms.RegisterForm()
     if form.validate_on_submit():
         try:
-            user = Users.query.filter_by(email=form.email.data).first()
+            user = models.Users.query.filter_by(email=form.email.data).first()
             if user:
                   flash("Пользователь с таким email уже зарегистрирован", "error")  
             hash = generate_password_hash(form.psw.data)
-            u = Users(email=form.email.data, psw = hash, name = form.name.data)
+            u = models.Users(email=form.email.data, psw = hash, name = form.name.data)
             db.session.add(u)
             db.session.flush()
             db.session.commit()
             flash("Вы успешно зарегистрированы", "success")
             return redirect(url_for("login"))
         except Exception as e:
-            flash("Ошибка БД: " + str(e), "error")
+            db.session.rollback()
+            print("Ошибка БД: " + str(e))
             return redirect(url_for("register"))
 
     return render_template("register.html", title = "Регистрация", form = form)
@@ -68,8 +64,8 @@ def register():
 
 def photos():
     user_photos = (
-        Photos.query.filter_by(user_id=current_user.id)
-        .order_by(Photos.image_date.desc())
+        models.Photos.query.filter_by(user_id=current_user.id)
+        .order_by(models.Photos.image_date.desc())
         .all()
     )
     
@@ -89,7 +85,7 @@ def logout():
 #functions below are used within the upload
 def allowed_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+           filename.rsplit('.', 1)[1].lower() in config.ALLOWED_EXTENSIONS
 
 #if a file has cyrilic letters or '—'(assigned automatically by windows when a file is copied), upload fails. To fix, we will change the problematic symbols:
 def cyr_to_lat(string):
@@ -126,8 +122,8 @@ def update_image_name(image, new_image_name, new_image_thumbnail_name):
 #compress an image
 def image_compress(filename, image_name):
     try:
-        im = Image.open(UPLOAD_FOLDER + '/' + filename)
-        compessed_image_path = os.path.join(COMPRESSED_IMAGE_FOLDER + image_name)
+        im = Image.open(config.UPLOAD_FOLDER + '/' + filename)
+        compessed_image_path = os.path.join(config.COMPRESSED_IMAGE_FOLDER + image_name)
         im.save(compessed_image_path, optimize=True, quality=50, lossless = True)
         print("files compressed")
     except Exception as e:
@@ -137,7 +133,7 @@ def image_compress(filename, image_name):
 def create_thumbnail(filename, image_thumbnail_name):
     try:
         size = (256, 256)
-        im = Image.open(os.path.join(UPLOAD_FOLDER, filename))
+        im = Image.open(os.path.join(config.UPLOAD_FOLDER, filename))
         image_width, image_height = im.size
         #crop the image to get a square for a nice thumbnail
         if image_height > image_width:
@@ -152,7 +148,7 @@ def create_thumbnail(filename, image_thumbnail_name):
             cropped_image = im
         
         cropped_image.thumbnail(size)
-        cropped_image.save(os.path.join(THUMBNAILS_FOLDER, image_thumbnail_name))
+        cropped_image.save(os.path.join(config.THUMBNAILS_FOLDER, image_thumbnail_name))
         print('Thumbnail created')
     except Exception as e:
         print("Thumbnail creation failed:", str(e))
@@ -160,7 +156,7 @@ def create_thumbnail(filename, image_thumbnail_name):
 #try to get a date from exif data if available to enhance sorting
 def get_datetime(filename):
     date_time_format = '%Y:%m:%d %H:%M:%S'
-    im = Image.open(os.path.join(UPLOAD_FOLDER, filename))
+    im = Image.open(os.path.join(config.UPLOAD_FOLDER, filename))
     exif = im._getexif()
     try:
         #when an image was created
@@ -193,7 +189,7 @@ def get_datetime(filename):
 #upload an image to minio
 def minio_upload_image(object_name, file_path):
     try:
-        result = client.fput_object(bucket_name, object_name, file_path)
+        result = minio_connect.client.fput_object(minio_connect.bucket_name, object_name, file_path)
         print('created: {0} with etag: {1}'.format (result.object_name, result.etag))
     except Exception as e:
         print("Couldn't upload file to minio ", str(e))
@@ -201,14 +197,14 @@ def minio_upload_image(object_name, file_path):
 # generate a temporary URL for an object in minio, default expiry is 7 days
 def get_image_url(image_name):
     try:
-        url = client.presigned_get_object(bucket_name,image_name)
+        url = minio_connect.client.presigned_get_object(minio_connect.bucket_name,image_name)
         return url
     except Exception as e:
         print("Didn't get image URL: ", str(e))
 
 
 def upload():
-    form = UploadFileForm()
+    form = forms.UploadFileForm()
     if form.validate_on_submit():
         #get the list of files chosen
         files = request.files.getlist("file") 
@@ -220,7 +216,8 @@ def upload():
                 continue
                 
             #if a file exceeds the size set, continue with other files    
-            if file.content_length > app.config['MAX_CONTENT_LENGTH']:
+            #if file.content_length > app.config['MAX_CONTENT_LENGTH']:
+            if file.content_length > config.MAX_FILE_SIZE:
                 print(f"Skipping. {file.filename} exceeds the maximum allowed size of 16 MB")
                 continue
 
@@ -228,14 +225,18 @@ def upload():
                 #trasliterate a filename
                 latin_filename = cyr_to_lat(file.filename)
                 #save to uploads folder
-                uploaded_filename = os.path.join(
-                    app.config["UPLOAD_FOLDER"], 
-                    secure_filename(latin_filename))
-                file.save(uploaded_filename)
+                uploaded_filename = os.path.join(config.UPLOAD_FOLDER, secure_filename(latin_filename))
+                #uploaded_filename = os.path.join(
+                #    config.UPLOAD_FOLDER, 
+                 #   secure_filename(latin_filename))
+                try:
+                    file.save(uploaded_filename)
+                except:
+                    print("it didn't work")
                 u_id = current_user.id
                 #get exif date
                 image_exif_date = get_datetime(latin_filename)
-                image = Photos(user_id = u_id, name = latin_filename, image_date = image_exif_date)
+                image = models.Photos(user_id = u_id, name = latin_filename, image_date = image_exif_date)
                 #add to database
                 db.session.add(image)
                 db.session.flush()
@@ -253,9 +254,9 @@ def upload():
                 #delete the original file saved to temp
                 os.remove(uploaded_filename)
                 #upload thumbnail and full size image to minio
-                compessed_image_path = os.path.join(COMPRESSED_IMAGE_FOLDER + image_name)
+                compessed_image_path = os.path.join(config.COMPRESSED_IMAGE_FOLDER + image_name)
                 minio_upload_image(image_name, compessed_image_path)
-                thumbnail_image_path = os.path.join(THUMBNAILS_FOLDER + image_thumbnail_name)
+                thumbnail_image_path = os.path.join(config.THUMBNAILS_FOLDER + image_thumbnail_name)
                 minio_upload_image(image_thumbnail_name, thumbnail_image_path)
 
             except Exception as e:

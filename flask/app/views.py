@@ -1,7 +1,5 @@
-from cloud import app, login_manager
+from . import app, login_manager, models, funcs
 from flask import render_template
-from models import Users
-import funcs
 from flask_login import login_required
 
 
@@ -14,13 +12,12 @@ def hello():
 @login_manager.user_loader
 def load_user(user_id):
     # since the user_id is just the primary key of our user table, use it in the query for the user
-    return Users.query.get(int(user_id))
+    return models.Users.query.get(int(user_id))
 
 
 @app.route("/")
-@app.route("/index")
 def index():
-    return funcs.index
+    return funcs.index()
 
 
 @app.route("/login", methods =["POST", "GET"])

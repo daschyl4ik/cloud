@@ -1,0 +1,57 @@
+---
+
+- name: 'update linux'
+  ansible.builtin.apt:
+    update_cache: true
+    upgrade: 'full'
+
+- name: 'install docker'
+  ansible.builtin.apt:
+    name: 
+    - 'docker.io'
+    - 'python3-pip'
+    state: 'latest'
+
+- name: 'install python packages'
+  ansible.builtin.pip:
+    name: 
+    - 'paramiko'
+    - 'requests'
+    - 'docker'
+    state: 'latest'
+
+- name: 'pull minio image'
+  community.docker.docker_image:
+    name: quay.io/minio/minio
+    source: pull
+    pull:
+      platform: amd64
+
+- name: 'create minio directory'
+  ansible.builtin.file:
+    path: /mnt/data/minio
+    state: directory
+
+- name: 'Copy minio default from local machine to the host'
+  ansible.builtin.copy:
+    src: 'minio'
+    dest: '/etc/default/minio'
+    remote_src: false
+
+
+- name: Start Minio Container
+  community.docker.docker_container:
+    name: minio
+    image: minio/minio:latest
+    state: started
+    detach: true
+    ports:
+    - "9000:9000"
+    - "9090:9090"
+    volumes:
+    - "/mnt/data/minio:/mnt/data"
+    - "/etc/default/minio:/etc/config.env"
+    env_file: "/etc/default/minio"
+    command: "server --console-address :9090"
+
+

@@ -1,0 +1,71 @@
+---
+
+- name: 'update linux'
+  ansible.builtin.apt:
+    update_cache: true
+    upgrade: 'full'
+
+- name: 'install docker'
+  ansible.builtin.apt:
+    name: 
+    - 'docker.io'
+    - 'python3-pip'
+    - 'python3-venv'
+    - 'nginx'
+    - 'build-essential'
+    - 'python3.10-dev'
+
+    state: 'latest'
+
+- name: 'install python packages'
+  ansible.builtin.pip:
+    name: 
+    - 'paramiko'
+    - 'requests'
+    - 'docker'
+    - 'flask'
+    - 'pillow'
+    - 'flask-login'
+    - 'flask_wtf'
+    - 'email-validator'
+    - 'flask-sqlalchemy'
+    - 'minio'
+    - 'uwsgi'
+    - 'docker-compose'
+    state: 'latest'
+
+# - name: 'create cloud directory'
+#   ansible.builtin.file:
+#     path: /var/www/cloudapp
+#     state: directory
+
+- name: 'Copy the app related files to the remote host'
+    #CHECK IF THEY ARE COPIED CORRECTLY
+  ansible.builtin.copy:
+    src: /var/www/cloudapp
+    dest: /var/www/
+    remote_src: false
+
+- name: 'create virtual environment'
+  ansible.builtin.command: 
+    cmd: 'python3 -m venv cloudenv'
+    chdir: /var/www/cloudapp
+
+- name: 'activate virtual environment'
+  ansible.builtin.command: 
+    cmd: 'source cloudenv/bin/activate'
+    chdir: /var/www/cloudapp
+
+
+- name: 'build images'
+  ansible.builtin.command: 
+    cmd: 'docker-compose build'
+    chdir: /var/www/cloudapp
+    register: build_result
+    ignore_errors: yes
+
+- name: 'start docker compose services'
+  ansible.builtin.command: docker-compose up -d
+  when: build_result.rc == 0  # Only start if the build was successful
+
+

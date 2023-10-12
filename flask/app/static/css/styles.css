@@ -17,7 +17,6 @@ header {
 
 }
 
-
 body {
     font-family: 'Alice', serif;
     margin: 0%;
@@ -277,7 +276,6 @@ font-size: 1vw;
     flex-direction: column;
 }
   
-
 
 .modal-content img {
     max-height: 90vh;
