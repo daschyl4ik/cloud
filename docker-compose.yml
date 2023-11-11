@@ -6,8 +6,8 @@ services:
     build: ./flask
     container_name: flask
     restart: always
-    environment:
-      - APP_NAME=MyFlaskApp
+    env_file:
+      - .env
     expose:
       - 8080
 
@@ -17,19 +17,3 @@ services:
     restart: always
     ports:
       - "80:80"
-
-  # minio:
-  #   build: ./minio
-  #   container_name: minio
-  #   restart: always
-  #   environment:
-  #     - MINIO_ENDPOINT='minio'
-  #     - MINIO_ACCESS_KEY='dxfcgvh$^&*jbklmnkhf*(^)'
-  #     - MINIO_SECRET_KEY='kjhgfy2*&^%$hbhm,nmjh2_*vc!@j0'
-  #     - MINIO_BUCKET_NAME='cloudmain'
-  #   expose:
-  #     - 9000
-  #   ports:
-  #     - "9000:9000"
-  #   volumes:
-  #     - /data

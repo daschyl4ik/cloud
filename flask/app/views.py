@@ -3,17 +3,10 @@ from flask import render_template
 from flask_login import login_required
 
 
-#TO BE REMOVED UPON TESTING
-@app.route("/hello",  methods =["GET"])
-def hello():
-    return render_template("hello.html")
-
-
 @login_manager.user_loader
 def load_user(user_id):
     # since the user_id is just the primary key of our user table, use it in the query for the user
     return models.Users.query.get(int(user_id))
-
 
 @app.route("/")
 def index():

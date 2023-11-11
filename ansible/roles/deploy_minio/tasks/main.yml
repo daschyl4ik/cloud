@@ -32,11 +32,11 @@
     path: /mnt/data/minio
     state: directory
 
-- name: 'Copy minio default from local machine to the host'
-  ansible.builtin.copy:
-    src: 'minio'
-    dest: '/etc/default/minio'
-    remote_src: false
+# - name: 'Copy minio default from local machine to the host'
+#   ansible.builtin.copy:
+#     src: 'minio'
+#     dest: '/etc/default/minio'
+#     remote_src: false
 
 
 - name: Start Minio Container
@@ -51,7 +51,9 @@
     volumes:
     - "/mnt/data/minio:/mnt/data"
     - "/etc/default/minio:/etc/config.env"
-    env_file: "/etc/default/minio"
+    env:
+      MINIO_ROOT_USER: "{{ minio_root_user | string}}"
+      MINIO_ROOT_PASSWORD: "{{ minio_root_password | string}}"
     command: "server --console-address :9090"
 
 

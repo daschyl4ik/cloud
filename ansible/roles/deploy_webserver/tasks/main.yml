@@ -34,10 +34,10 @@
     - 'docker-compose'
     state: 'latest'
 
-# - name: 'create cloud directory'
-#   ansible.builtin.file:
-#     path: /var/www/cloudapp
-#     state: directory
+- name: 'create cloud directory'
+  ansible.builtin.file:
+    path: /var/www/cloudapp
+    state: directory
 
 - name: 'Copy the app related files to the remote host'
     #CHECK IF THEY ARE COPIED CORRECTLY
@@ -53,19 +53,22 @@
 
 - name: 'activate virtual environment'
   ansible.builtin.command: 
-    cmd: 'source cloudenv/bin/activate'
-    chdir: /var/www/cloudapp
+    cmd: '/bin/bash -c "source /var/www/cloudapp/cloudenv/bin/activate"'
 
 
 - name: 'build images'
   ansible.builtin.command: 
     cmd: 'docker-compose build'
     chdir: /var/www/cloudapp
-    register: build_result
-    ignore_errors: yes
+
+- name: 'activate virtual environment'
+  ansible.builtin.command: 
+    cmd: 'systemctl stop nginx'    
 
 - name: 'start docker compose services'
-  ansible.builtin.command: docker-compose up -d
-  when: build_result.rc == 0  # Only start if the build was successful
+  ansible.builtin.command: 
+    cmd: 'docker-compose up -d'
+    chdir: /var/www/cloudapp
+
 
 

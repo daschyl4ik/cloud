@@ -4,7 +4,7 @@ from . import config
 client = Minio (endpoint = config.MINIO_ENDPOINT,
   access_key = config.MINIO_ACCESS_KEY,
   secret_key = config.MINIO_SECRET_KEY,
-  secure = False) #to access http
+  secure = True) #to access http
 
 bucket_name = config.MINIO_BUCKET_NAME
 

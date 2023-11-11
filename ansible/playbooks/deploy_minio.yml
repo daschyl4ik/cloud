@@ -4,6 +4,8 @@
   become: true
   vars:
     ansible_python_interpreter: /usr/bin/python3
+  vars_files:
+   - ../roles/deploy_minio/vars/vars.yml
   gather_facts: true
 
   roles:

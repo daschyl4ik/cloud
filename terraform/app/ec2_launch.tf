@@ -24,7 +24,7 @@ ingress {
     from_port        = 22
     to_port          = 22
     protocol         = "TCP"
-    cidr_blocks      = [var.my-converge-subnet-cidr]
+    cidr_blocks      = ["0.0.0.0/0"]
   }
 
   
@@ -66,7 +66,7 @@ tags = {
 }
 
 user_data = templatefile("userdata.sh.tftpl", {
-  user = "admin",
+  user = "app_admin",
   public_key = var.public_key
 })
 

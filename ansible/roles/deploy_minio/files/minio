@@ -2,8 +2,8 @@
 # This user has unrestricted permissions to perform S3 and administrative API operations on any resource in the deploym># Omit to use the default values 'minioadmin:minioadmin'.
 # MinIO recommends setting non-default values as a best practice, regardless of environment
 
-MINIO_ROOT_USER=myminioadmin
-MINIO_ROOT_PASSWORD=myminioadmin
+# MINIO_ROOT_USER=myminioadmin
+# MINIO_ROOT_PASSWORD=myminioadmin
 
 # MINIO_VOLUMES sets the storage volume or path to use for the MinIO server.
 
