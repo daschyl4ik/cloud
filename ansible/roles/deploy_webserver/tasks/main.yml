@@ -11,28 +11,13 @@
     - 'docker.io'
     - 'python3-pip'
     - 'python3-venv'
-    - 'nginx'
-    - 'build-essential'
-    - 'python3.10-dev'
-
     state: 'latest'
 
 - name: 'install python packages'
   ansible.builtin.pip:
-    name: 
-    - 'paramiko'
-    - 'requests'
-    - 'docker'
-    - 'flask'
-    - 'pillow'
-    - 'flask-login'
-    - 'flask_wtf'
-    - 'email-validator'
-    - 'flask-sqlalchemy'
-    - 'minio'
-    - 'uwsgi'
-    - 'docker-compose'
-    state: 'latest'
+   name: 
+   - 'docker-compose'
+   state: 'latest'
 
 - name: 'create cloud directory'
   ansible.builtin.file:
@@ -40,7 +25,6 @@
     state: directory
 
 - name: 'Copy the app related files to the remote host'
-    #CHECK IF THEY ARE COPIED CORRECTLY
   ansible.builtin.copy:
     src: /var/www/cloudapp
     dest: /var/www/
@@ -55,15 +39,10 @@
   ansible.builtin.command: 
     cmd: '/bin/bash -c "source /var/www/cloudapp/cloudenv/bin/activate"'
 
-
 - name: 'build images'
   ansible.builtin.command: 
     cmd: 'docker-compose build'
-    chdir: /var/www/cloudapp
-
-- name: 'activate virtual environment'
-  ansible.builtin.command: 
-    cmd: 'systemctl stop nginx'    
+    chdir: /var/www/cloudapp 
 
 - name: 'start docker compose services'
   ansible.builtin.command: 
