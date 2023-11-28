@@ -1,4 +1,13 @@
-app/
-html/
 instance/
-test/
+.terraform.lock.hcl
+.terraform
+terraform.tfstate
+terraform.tfstate.backup
+variables for main.tf
+vars.yml
+ansible/hosts.txt
+ansible/ansible.cfg
+.env
+flask/myapp.py
+flask/cloudapp.log
+

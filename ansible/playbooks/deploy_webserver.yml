@@ -1,0 +1,10 @@
+---
+- name: 'deploy webserver for cloud flask app'
+  hosts: 'app_server'
+  become: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  gather_facts: true
+
+  roles:
+   - deploy_webserver

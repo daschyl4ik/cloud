@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<img src="../static/images/cat_icon.png" alt="cat_icon" class="cat_icon">
+
+<div class="form_upload">
+<h1>Выберите изображения</h1>
+{% for cat, msg in get_flashed_messages(True) %}
+<div class="flash {{cat}}">{{msg}}</div>
+{% endfor %}
+
+<form method="post" action="" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+
+
+<button class="choose_files">   {{ form.file(multiple = True) }} </button>
+<button> {{ form.submit() }} </button>
+
+<div class="warning">
+<p>Допустимые форматы: .png, .jpg, .jpeg</p>
+<p>Файлы других форматов не будут загружены</p>
+<p>Максимальный размер файла - 16 Мб</p>
+</div>
+
+</form>
+</div>
+
+{% endblock %}

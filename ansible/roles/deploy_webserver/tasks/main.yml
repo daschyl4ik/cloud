@@ -1,0 +1,53 @@
+---
+
+- name: 'update linux'
+  ansible.builtin.apt:
+    update_cache: true
+    upgrade: 'full'
+
+- name: 'install docker'
+  ansible.builtin.apt:
+    name: 
+    - 'docker.io'
+    - 'python3-pip'
+    - 'python3-venv'
+    state: 'latest'
+
+- name: 'install python packages'
+  ansible.builtin.pip:
+   name: 
+   - 'docker-compose'
+   state: 'latest'
+
+- name: 'create cloud directory'
+  ansible.builtin.file:
+    path: /var/www/cloudapp
+    state: directory
+
+- name: 'Copy the app related files to the remote host'
+  ansible.builtin.copy:
+    src: /var/www/cloudapp
+    dest: /var/www/
+    remote_src: false
+
+- name: 'create virtual environment'
+  ansible.builtin.command: 
+    cmd: 'python3 -m venv cloudenv'
+    chdir: /var/www/cloudapp
+
+- name: 'activate virtual environment'
+  ansible.builtin.command: 
+    cmd: '/bin/bash -c "source /var/www/cloudapp/cloudenv/bin/activate"'
+
+- name: 'build images'
+  ansible.builtin.command: 
+    cmd: 'docker-compose build'
+    chdir: /var/www/cloudapp 
+
+- name: 'start docker compose services'
+  ansible.builtin.command: 
+    cmd: 'docker-compose up -d'
+    chdir: /var/www/cloudapp
+
+
+

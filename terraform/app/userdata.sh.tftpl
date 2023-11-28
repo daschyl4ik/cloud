@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Add user to wheel/sudo group
+useradd -G wheel ${user} || useradd -G sudo ${user}
+# Add public key and set up the user
+mkdir -p /home/${user}/.ssh
+cat <<EOF > /home/${user}/.ssh/authorized_keys
+${public_key}
+EOF
+chown -R ${user}:${user} /home/${user}
+echo "${user} ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/100-ansible-users
+chmod 0440 /etc/sudoers.d/100-ansible-users
